@@ -1,0 +1,89 @@
+﻿@model List<OrthoSample.Models.Order>
+
+@{
+    ViewBag.Title = "Orders";
+}
+
+<p>
+    @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-info" })
+</p>
+
+<table class="table">
+    <tr>
+        <th>
+            Order Id
+        </th>
+        <th>
+            Quantity
+        </th>
+        <th>
+            Order Amount
+        </th>
+        <th>
+            Product
+        </th>
+        <th>
+            Product Price
+        </th>
+        <th>
+            Order Date
+        </th>
+        <th>
+            Date Created
+        </th>
+        <th>
+            Name
+        </th>
+        <th>
+            Email
+        </th>
+        <th>
+            Order Status
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.OrderId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Quantity)
+            </td>
+            <td>
+                $ @Html.DisplayFor(modelItem => item.OrderAmount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Product)
+            </td>
+            <td>
+                $ @Html.DisplayFor(modelItem => item.ProductPrice)
+            </td>           
+            <td>
+                @Html.Raw(item.OrderDate.ToShortDateString())
+            </td>
+            <td>
+                @Html.Raw(item.DateCreated.ToShortDateString())
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Customer.FirstName) @Html.DisplayFor(modelItem => item.Customer.LastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Customer.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OrderStatus)
+            </td>
+            <td>
+                @if (item.OrderStatus.ToLower() != "canceled")
+                {
+                    @Html.ActionLink("Edit", "Edit", new { id = item.OrderId }) <span>|</span>
+                    @Html.ActionLink("Cancel", "Cancel", new { id = item.OrderId })
+                }
+            </td>
+        </tr>
+    }
+
+</table>
