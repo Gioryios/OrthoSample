@@ -120,5 +120,13 @@ namespace OrthoSample.Controllers
             dbcontext.SaveChanges();
             return RedirectToAction("Index");
         }
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                dbcontext.Dispose();
+            }
+            base.Dispose(disposing);
+        }
     }
 }
