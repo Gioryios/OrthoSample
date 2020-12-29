@@ -1,2 +1,2 @@
 # OrthoSample
-Sample Project For Ortho
+Sample Project For Ortho Molecular Products
